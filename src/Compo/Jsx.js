@@ -1,9 +1,18 @@
-import React from 'react'
-const Jssx = (props) => {
-    return <div className="container">
-        <h1>hello {props.className}</h1>
-        {props.children}
-    </div>
-}
+// import React from 'react'
 
-export default Jssx
+// // const Jssx = ({ Name }) => {
+// //     return (<div className="container">
+// //         <h1>Hello {Name}</h1>
+
+// //     </div>
+// //     )
+// // }
+
+// const Jssx = (props) => {
+//     const {Name} = props
+//     return ( <div className="container">
+//         <h1>hello {Name}</h1>
+//     </div> )
+// }
+
+// export default Jssx
