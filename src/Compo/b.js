@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReadOnlyRow from './ReadOnlyRow';
 import EditableRow from './EditableRow';
 
@@ -13,30 +13,28 @@ const data = [
 export default function Table() {
 
     const [myData, setMyData] = useState(data);
-    const [ref,setRef] = useState(null);
     const [editPersonId, setEditPersonId] = useState(null);
-    const [formErrors, setFormErrors] = useState({
-        id: '',
-        fname: '',
-        lname: ''
-    });
+    const [formErrors, setFormErrors] = useState({});
+    const [isSubmit, setisSubmit] = useState(false);
     const [editFormData, setEditFormData] = useState({
         id: '',
         fname: '',
         lname: ''
     });
-   
 
-    //onclick edit.....
+    const handleEditFormChange = (event) => {
+        const fieldName = event.target.getAttribute('name');
+        const fieldValue = event.target.value;
+        const newFormData = { ...editFormData };
+        newFormData[fieldName] = fieldValue;
+        setEditFormData(newFormData);
+    }
+
+    //onclick edit
+
     const handleEditClick = (event, person) => {
         event.preventDefault();
-        setFormErrors({
-                id:'',
-                fname:'',
-                lname:''
-            });
         setEditPersonId(person.id);
-        setRef(person.id);
 
         const formValues = {
             id: person.id,
@@ -47,6 +45,7 @@ export default function Table() {
     }
 
     //save edited text
+
     const handleEditFormSubmit = (event) => {
         event.preventDefault();
         const editedPerson = {
@@ -55,54 +54,40 @@ export default function Table() {
             lname: editFormData.lname
         }
         const newData = [...myData];
-        const index = myData.findIndex((person) => person.id === editPersonId);
-
-        if (editedPerson.id.length !== 0 && editedPerson.fname.length !== 0 && editedPerson.lname.length !== 0) {
-
-            newData[index] = editedPerson;
-            setMyData(newData);
-        }   
-        // setEditPersonId(null);
-        console.log(formErrors);
+        const index = data.findIndex((person) => person.id === editPersonId);
+        newData[index] = editedPerson;
+        setMyData(newData);
+        setEditPersonId(null);
+        setFormErrors(validate(editFormData));
+        setisSubmit(true);
     }
 
-    //For validation
+    useEffect(() => {
+        console.log(formErrors)
+        if (Object.keys(formErrors).length === 0 && isSubmit) {
+            console.log(editFormData);
+        }
+        < p > {editFormData.fname}</p >
+    }, [handleEditFormSubmit])
+
+
     const validate = (values) => {
-        let errors = {};
-        // console.log(errors)
-        if (values.id === '') {
-            errors.id="id required!";
+        const errors = {};
+        if (!values.id) {
+            errors.id = "id required!";
         }
-        if (values.fname === '') {
-            errors.fname="fname required!";
+        if (!values.fname) {
+            errors.fname = "name required!";
         }
-        if (values.lname === '') {
-            errors.lname="lname required!";
+        if (!values.lname) {
+            errors.lname = "name required!";
         }
-
-        if(Object.keys(errors).length===0){
-            return values
-        }
-        else {
-            setFormErrors(errors);
-        }
-    }
-
-    const handleEditFormChange = (event) => {
-        event.preventDefault();
-        const fieldName = event.target.getAttribute('name');
-        const fieldValue = event.target.value;
-        const newFormData = { ...editFormData };
-        newFormData[fieldName] = fieldValue;
-        const response = validate(newFormData);
-        console.log("Response: ",response)
-        console.log("Error: ",formErrors)
-        setEditFormData(newFormData)
+        return errors;
     }
 
     return (
         <div className="table">
-            <form onSubmit={handleEditFormSubmit}>
+            <form onSubmit={handleEditFormSubmit} >
                 <table>
                     <thead>
                         <tr>
@@ -118,10 +103,10 @@ export default function Table() {
                                 return <>
                                     {
                                         editPersonId === person.id
-                                            ? <EditableRow editFormData={editFormData} handleEditFormChange={handleEditFormChange} err={formErrors} setFormErrors={setFormErrors} />
-                                            : <ReadOnlyRow person={person} handleEditClick={handleEditClick}  />
+                                            ? <EditableRow editFormData={editFormData} handleEditFormChange={handleEditFormChange} validate={validate} />
+                                            : <ReadOnlyRow person={person} handleEditClick={handleEditClick} />
                                     }
-                                    
+
                                 </>
                             })
                         }

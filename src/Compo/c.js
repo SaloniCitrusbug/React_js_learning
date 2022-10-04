@@ -62,7 +62,7 @@ export default function Table() {
             newData[index] = editedPerson;
             setMyData(newData);
         }   
-        // setEditPersonId(null);
+        setEditPersonId(null);
         console.log(formErrors);
     }
 
