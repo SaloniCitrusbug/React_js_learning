@@ -3,7 +3,7 @@ import ReadOnlyRow from './ReadOnlyRow';
 import EditableRow from './EditableRow';
 
 const data = [
-    { fname: 'Rocky', lname: 'Rathod', id: '1' },
+    { fname: 'Rocky', lname: 'Rathod', id: 1 },
     { fname: 'Saumya', lname: 'Patel', id: '2' },
     { fname: 'Pragya', lname: 'Gupta', id: '3' },
     { fname: 'Charmi', lname: 'Chaudhri', id: '4' },

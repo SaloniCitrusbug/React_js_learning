@@ -1,44 +1,37 @@
-// import React, { Component } from 'react'
+import React,{useEffect,useState} from 'react'
 
-// class User_condition extends Component {
+function Task_effect() {
+    const [Timer, setTimer] = useState(1)
+    const [TimerRev, setTimerRev] = useState(5)
+    const [Show, setShow] = useState(true)
+    const [Increase, setIncrease] = useState(false)
+    const tick = () => {
+        if (TimerRev == 1){
+            setShow(false)
+        }
+        Increase?setTimer(PreveCount => Show?PreveCount + 1:PreveCount):setTimerRev(PreveCount => Show?PreveCount - 1:PreveCount)
+      }
+    useEffect(() => {
 
-//     constructor(props) {
-//         super(props)
+        const Interval = setInterval(tick,1000)
+        return () => {
+            clearInterval(Interval)
+        }
 
-//         this.state = {
-//             isLoggIn: true
-//         }
-//     }
+    })
 
+  return (
+    <div>
+        <div>
+            {Timer}
+        </div>
+        <br />
+        <div>
+        {TimerRev}
+        </div>
+        <button onClick={() => setIncrease(true)}>submit</button>
+    </div>
+  )
+}
 
-//     render() {
-
-//         return this.state.isLoggIn && <div>Welcome</div>
-
-//         // return this.state.isLoggIn ? (<div>Welcome</div>) : (<div>Good Bye</div>)
-
-//         // let message
-//         // if(this.state.isLoggIn){
-//         //     message = <div>Welcome</div>
-//         // }
-//         // else{
-//         //     message = <div>Good Bye</div>
-//         // }
-//         // return <div>{message}</div>
-
-
-//         // if (this.state.isLoggIn) {
-//         //     return (
-//         //         <div>Welcome</div>
-//         //     )
-//         // }
-//         // else {
-//         //     return (
-//         //         <div>Good Bye</div>
-//         //     )
-//         // }
-
-//     }
-// }
-
-// export default User_condition
+export default Task_effect
