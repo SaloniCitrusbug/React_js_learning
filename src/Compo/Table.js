@@ -168,3 +168,128 @@ export default function Table() {
         </div>
     )
 };
+
+// import React, { useState, useEffect } from 'react'
+
+// function Task_effect() {
+
+//     const [Count, setCount] = useState(1);
+//     const [revcount, setrevCount] = useState(5);
+//     const [show, setshow] = useState(true)
+//     const [increment, setincrement] = useState(false)
+//     const [decrement, setdecrement] = useState(false)
+
+//     const val = () => {
+//         if (revcount === 1) {
+//             setshow(false)
+//         }
+//         increment ? setCount(precounts => show ? precounts + 1 : precounts) :
+//             setrevCount(precount => show ? precount - 1 : precount)
+//     }
+
+//     useEffect(() => {
+//         const interval = setInterval(val, 1000)
+//         return () => {
+//             clearInterval(interval)
+//         }
+//     })
+
+//     const num = () => {
+//         if (Count === 4) {
+//             setshow(false)
+//         }
+//         decrement ? setrevCount(precount => show ? precount - 1 : precount) :
+//             setCount(precounts => show ? precounts + 1 : precounts)
+//     }
+
+//     useEffect(() => {
+//         const interval = setInterval(num, 1000)
+//         return () => {
+//             clearInterval(interval)
+//         }
+//     })
+
+//     return (
+//         <div>
+//             {revcount} <br />
+//             {
+//                 show ? null :
+//                     <button onClick={num}> Submit</button>
+//             } <br />
+
+//             {/* {
+//                 show ? null : 
+//             } */}
+            
+//             {Count}
+//             <h5>Done</h5>
+//         </div>
+//     )
+// }
+
+// export default Task_effect
+
+
+
+// import React, { useState, useEffect } from 'react'
+
+// function Task_effect() {
+
+//     const [Count, setCount] = useState(1);
+//     const [revcount, setrevCount] = useState(5);
+//     const [show, setshow] = useState(true)
+//     const [increment, setincrement] = useState(false)
+//     const [decrement, setdecrement] = useState(false)
+
+//     const val = () => {
+//         if (revcount === 1) {
+//             setshow(false)
+//         }
+//         increment ? setCount(precounts => show ? precounts + 1 : precounts) :
+//             setrevCount(precount => show ? precount - 1 : precount)
+//     }
+
+//     useEffect(() => {
+//         const interval = setInterval(val, 1000)
+//         return () => {
+//             clearInterval(interval)
+//         }
+//     })
+
+//     const num = () => {
+//         if (Count === 4) {
+//             setshow(false)
+//         }
+//         decrement ? setrevCount(precount => show ? precount - 1 : precount) :
+//             setCount(precounts => show ? precounts + 1 : precounts)
+//     }
+
+//     useEffect(() => {
+//         const interval = setInterval(num, 1000)
+//         return () => {
+//             clearInterval(interval)
+//         }
+//     })
+
+//     // const nums = () => {
+//     //     if (Count === 4) {
+//     //         setshow(true)
+//     //     }
+//     // }
+
+//     return (
+//         <div>
+//             {revcount} <br />
+//             {
+//                 show ? null :
+//                     <button onClick={() => num()}> Submit</button>
+//             } <br />
+//             <div>{Count}</div>
+//             {/* {
+//                 (Count===5) ? <h5>Done</h5> : null
+//             } */}
+//         </div>
+//     )
+// }
+
+// export default Task_effect
