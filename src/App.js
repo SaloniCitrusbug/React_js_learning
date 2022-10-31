@@ -17,7 +17,7 @@ import './App.css';
 // import Stylesheet from './Compo/Stylesheet';
 // import Table from './Compo/Table';
 // import EditableRow from './Compo/EditableRow'
-import Tables from './Compo/Task_4';
+// import Tables from './Compo/Task_4';
 // import ParentCompol from './Compo/ParentCompol';
 // import Fragment from './Compo/Fragment';
 // import Extraaa from './Compo/Extras';
